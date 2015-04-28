@@ -8,7 +8,7 @@ class Kales(object):
     def __init__(self, api_key):
         self.api_key = api_key
 
-    def _request(self, content, content_type, external_id, **kwargs):
+    def _request(self, content, content_type, external_id, output_format="application/json", **kwargs):
         headers = {
             "x-ag-access-token": self.api_key,
             "Content-Type": content_type,
@@ -18,7 +18,7 @@ class Kales(object):
             "calculateRelevanceScore": "true",
             "allowDistribution": "false",
             "allowSearch": "false",
-            "outputFormat": "application/json"
+            "outputFormat": output_format
         }
         headers.update(kwargs)
         return requests.post("https://api.thomsonreuters.com/permid/calais",
